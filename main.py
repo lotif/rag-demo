@@ -23,3 +23,7 @@ def ask(question):
         print(f"Page Number: {doc.metadata['page']}")
         print(f"Source Text: {doc.page_content}")
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+
+
+# ask("Which telescope is the biggest NASA has ever made?")
+# ask("How does the James Webb telescope digitizes the analog signals from the near-IR detectors?")
