@@ -3,7 +3,7 @@ from langchain import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.llms import CTransformers
+from langchain.llms import CTransformers, HuggingFacePipeline
 from langchain.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from torch import bfloat16
@@ -110,7 +110,7 @@ def get_llm_on_gpu():
         bnb_4bit_compute_dtype=bfloat16,
     )
     # Pulling the model from Huggingface
-    llm = transformers.AutoModelForCausalLM.from_pretrained(
+    model = transformers.AutoModelForCausalLM.from_pretrained(
         model_id,
         trust_remote_code=True,
         config=model_config,
@@ -118,5 +118,24 @@ def get_llm_on_gpu():
         device_map="auto",
         use_auth_token=hf_auth,
     )
+    # Instatiating the tokenizer
+    tokenizer = transformers.AutoTokenizer.from_pretrained(
+        model_id,
+        use_auth_token=hf_auth
+    )
+    # Instatiating the text generation pipeline
+    generate_text = transformers.pipeline(
+        model=model,
+        tokenizer=tokenizer,
+        return_full_text=True,  # langchain expects the full text
+        task="text-generation",
+        # we pass model parameters here too
+        temperature=0.001,  # 'randomness' of outputs, 0.001 is the min and 1.0 the max
+        max_new_tokens=256,  # max number of tokens to generate in the output
+        repetition_penalty=1.1  # without this output begins repeating
+    )
+    llm = HuggingFacePipeline(pipeline=generate_text)
+
+    return llm
 
     return llm
