@@ -19,7 +19,7 @@ def ask(question):
     source_docs = response["source_documents"]
     for i, doc in enumerate(source_docs):
         print(f"Source Document {i + 1}")
-        print(f"Source Text: {doc.page_content}")
         print(f"Document Name: {doc.metadata['source']}")
         print(f"Page Number: {doc.metadata['page']}")
-        print("================================================================================")
+        print(f"Source Text: {doc.page_content}")
+        print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")

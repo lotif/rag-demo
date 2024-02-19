@@ -25,5 +25,5 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> from rag_utils import build_db
 >>> build_db()
 >>> from main import ask
->>> ask("What is NASA's most powerful telescope ever constructed?")
+>>> ask("Which telescope is the biggest NASA has ever made?")
 ```
