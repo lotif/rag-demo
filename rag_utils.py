@@ -99,7 +99,7 @@ def get_llm_on_gpu():
     hf_auth = "<add your access token here>"
     model_config = transformers.AutoConfig.from_pretrained(
         model_id,
-        use_auth_token=hf_auth
+        token=hf_auth
     )
     # set quantization configuration to load large model with less GPU memory
     # this requires the `bitsandbytes` library
@@ -138,4 +138,3 @@ def get_llm_on_gpu():
 
     return llm
 
-    return llm
