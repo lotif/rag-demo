@@ -59,7 +59,6 @@ def build_retrieval_qa_pipeline():
     embeddings_model = make_embeddings_model()
 
     # Vector Database (FAISS)
-    # First param is the path where the data will be stored
     print("Instantiating vector db...")
     vector_db = FAISS.load_local(folder_path="data", embeddings=embeddings_model)
 
