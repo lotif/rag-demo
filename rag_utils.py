@@ -12,7 +12,7 @@ from torch import bfloat16
 def build_db():
     # Loading all the PDFs from the documents folder
     print("Loading documents...")
-    loader = DirectoryLoader(path="documents", glob='*.pdf', loader_cls=PyPDFLoader)
+    loader = DirectoryLoader(path="documents", glob="*.pdf", loader_cls=PyPDFLoader)
     documents = loader.load()
 
     # Getting all the texts in chunks of 500 characters with 50 character overlap
