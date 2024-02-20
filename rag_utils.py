@@ -79,7 +79,7 @@ def build_retrieval_qa_pipeline():
     )
 
     # Building langchain Retrieval QA
-    print("Building retrieval qa pipeline...")
+    print("Building retrieval QA pipeline...")
     retrieval_qa_pipeline = RetrievalQA.from_chain_type(
         llm=llm,
         chain_type="stuff",
@@ -94,7 +94,7 @@ def build_retrieval_qa_pipeline():
 def get_llm_on_gpu():
     model_id = "meta-llama/Llama-2-7b-chat-hf"
 
-    # begin initializing HF items, you need an access token
+    # begin initializing HF items, you'll need a HuggingFace access token
     hf_auth = "<add your access token here>"
     model_config = transformers.AutoConfig.from_pretrained(
         model_id,
