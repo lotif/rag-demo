@@ -104,7 +104,8 @@ def build_retrieval_qa_pipeline():
 def get_llm_on_gpu():
     model_id = "meta-llama/Llama-2-7b-chat-hf"
 
-    # begin initializing HF items, you'll need a HuggingFace access token
+    # begin initializing HuggingFace items, you'll need an access token
+    # which you can generate on your accont page in https://huggingface.co/settings/tokens
     hf_auth = "<add your access token here>"
     model_config = transformers.AutoConfig.from_pretrained(
         model_id,
