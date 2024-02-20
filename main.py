@@ -3,12 +3,18 @@ import datetime
 from rag_utils import build_retrieval_qa_pipeline
 
 
-def ask(question):
-    retrieval_qa_pipeline = build_retrieval_qa_pipeline()
+RETRIEVAL_QA_PIPELINE = None
 
+
+def build_pipeline():
+    global RETRIEVAL_QA_PIPELINE
+    RETRIEVAL_QA_PIPELINE = build_retrieval_qa_pipeline()
+
+
+def ask(question):
     start = datetime.datetime.now()
     print("Asking question...")
-    response = retrieval_qa_pipeline({"query": question})
+    response = RETRIEVAL_QA_PIPELINE({"query": question})
     end = datetime.datetime.now()
 
     print("\n================================================================================")

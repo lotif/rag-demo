@@ -1,3 +1,5 @@
+import datetime
+
 import transformers
 from langchain import PromptTemplate
 from langchain.chains import RetrievalQA
@@ -10,6 +12,7 @@ from torch import bfloat16
 
 
 def build_db():
+    start = datetime.datetime.now()
     # Loading all the PDFs from the documents folder
     print("Loading documents...")
     loader = DirectoryLoader(path="documents", glob="*.pdf", loader_cls=PyPDFLoader)
@@ -28,6 +31,9 @@ def build_db():
     vector_db = FAISS.from_documents(texts, embeddings_model)
     vector_db.save_local(folder_path="data")
 
+    end = datetime.datetime.now()
+    print(f"DB built in {(end - start).seconds}s")
+
 
 def make_embeddings_model():
     print("Instantiating embeddings model...")
@@ -38,6 +44,7 @@ def make_embeddings_model():
 
 
 def build_retrieval_qa_pipeline():
+    start = datetime.datetime.now()
     # LLM: LLama2 7B Chat
     # Local CTransformers model that runs on CPU
     # Download it to the model/ folder from the link below:
@@ -87,6 +94,9 @@ def build_retrieval_qa_pipeline():
         return_source_documents=True,
         chain_type_kwargs={"prompt": prompt_template}
     )
+
+    end = datetime.datetime.now()
+    print(f"Pipeline built in {(end - start).seconds}s")
 
     return retrieval_qa_pipeline
 

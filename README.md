@@ -24,6 +24,7 @@ Python 3.11.3 (main, Apr  7 2023, 19:29:16) [Clang 14.0.0 (clang-1400.0.29.202)]
 Type "help", "copyright", "credits" or "license" for more information.
 >>> from rag_utils import build_db
 >>> build_db()
->>> from main import ask
+>>> from main import ask, build_pipeline
+>>> build_pipeline()
 >>> ask("Which telescope is the biggest NASA has ever made?")
 ```

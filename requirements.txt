@@ -4,6 +4,7 @@ sentence-transformers==2.3.1
 faiss-cpu==1.7.4
 ctransformers==0.2.27
 huggingface-hub==0.20.3
+
 # GPU:
 torch==2.2.0
 transformers==4.37.2
